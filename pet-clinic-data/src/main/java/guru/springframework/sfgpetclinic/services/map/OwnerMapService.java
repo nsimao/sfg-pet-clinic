@@ -15,7 +15,7 @@ import java.util.Set;
  */
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 // ------------------------------ FIELDS ------------------------------
 
     private final PetTypeService petTypeService;
@@ -23,7 +23,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
 // --------------------------- CONSTRUCTORS ---------------------------
 
-    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
         this.petTypeService = petTypeService;
         this.petService = petService;
     }
