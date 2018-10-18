@@ -6,6 +6,7 @@ import guru.springframework.sfgpetclinic.services.PetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,6 +56,7 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
+    @Transactional
     public Pet save(Pet object) {
         return petRepository.save(object);
     }
