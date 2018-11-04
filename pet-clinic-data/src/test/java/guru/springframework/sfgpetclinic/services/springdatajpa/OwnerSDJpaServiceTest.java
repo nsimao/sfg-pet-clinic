@@ -5,9 +5,9 @@ import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
 import guru.springframework.sfgpetclinic.repositories.PetRepository;
 import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -45,7 +45,6 @@ public class OwnerSDJpaServiceTest {
         return owner;
     }
 
-    @Ignore
     @Test
     public void delete() {
         ownerSDJpaService.delete(returnOwner);
@@ -53,14 +52,12 @@ public class OwnerSDJpaServiceTest {
         verify(ownerRepository, times(1)).delete(any());
     }
 
-    @Ignore
     @Test
     public void deleteById() {
         ownerSDJpaService.deleteById(1L);
         verify(ownerRepository).deleteById(anyLong());
     }
 
-    @Ignore
     @Test
     public void findAll() {
         Set<Owner> returnOwnersSet = new HashSet<>();
@@ -78,7 +75,6 @@ public class OwnerSDJpaServiceTest {
         return owner;
     }
 
-    @Ignore
     @Test
     public void findById() {
         when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
@@ -86,7 +82,6 @@ public class OwnerSDJpaServiceTest {
         assertNotNull(owner);
     }
 
-    @Ignore
     @Test
     public void findByIdNotFound() {
         when(ownerRepository.findById(anyLong())).thenReturn(Optional.empty());
@@ -94,7 +89,6 @@ public class OwnerSDJpaServiceTest {
         assertNull(owner);
     }
 
-    @Ignore
     @Test
     public void findByLastName() {
         when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
@@ -103,7 +97,6 @@ public class OwnerSDJpaServiceTest {
         verify(ownerRepository).findByLastName(any());
     }
 
-    @Ignore
     @Test
     public void save() {
         Owner ownerToSave = createOwner(1L);
@@ -115,8 +108,8 @@ public class OwnerSDJpaServiceTest {
 
     @Before
     public void setUp() {
-//        MockitoAnnotations.initMocks(this);
-//        returnOwner = createOwner(1L, LAST_NAME);
-//        ownerSDJpaService = new OwnerSDJpaService(ownerRepository, petRepository, petTypeRepository);
+        MockitoAnnotations.initMocks(this);
+        returnOwner = createOwner(1L, LAST_NAME);
+        ownerSDJpaService = new OwnerSDJpaService(ownerRepository, petRepository, petTypeRepository);
     }
 }
